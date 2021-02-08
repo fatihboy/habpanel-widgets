@@ -1,0 +1,60 @@
+{
+    "template": "<div oc-lazy-load=\"['/static/huelight/huelight.controller.js']\">\n    <div ng-controller=\"ngHueCtrl as vm\">\n        <widget-icon ng-if=\"vm.widget.backdrop_icon\" backdrop=\"true\" iconset=\"vm.widget.backdrop_icon_iconset\" icon=\"vm.widget.backdrop_icon\" center=\"vm.widget.backdrop_center\"></widget-icon>\n        <div class=\"row\">\n            <div class=\"col-xs-8\">\n                <div ng-if=\"vm.widget.hideTitle===false\">\n                    <span ng-style=\"{ 'font-size' : '18pt' }\" ng-class=\"{ 'dummy-value-right' : vm.widget.nolinebreak }\"\n                        class=\"value\">{{vm.widget.title}}</span>\n                </div>\n            </div>\n            <div class=\"col-xs-4\">\n                <div class=\"box-content switch\" ng-click=\"vm.toggleBulb()\">\n                    <div class=\"switch-content\">\n                        <div class=\"value\" ng-class=\"{ 'switch-off': vm.lightOff }\">\n                            <widget-icon iconset=\"vm.widget.onoff_icon_iconset\" icon=\"vm.widget.onoff_icon\" class=\"icon\" state=\"vm.lightOff ? 'OFF' : 'ON'\"></widget-icon>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div ng-hide=\"vm.lightOff\" class=\"row\">\n            <div class=\"col-xs-12\">\n                <div class=\"slider-div\">\n                    <widget-slider ng-model=\"vm.dimmerSliderModel\" id=\"dimmer-slider\" />\n                </div>\n            </div>\n        </div>\n        <div ng-if=\"vm.widget.type==='Colour Light'\" ng-hide=\"vm.lightOff\" class=\"row\">\n            <div class=\"slider-label ng-binding\">Colour Temperature</div>\n        </div>\n        <div ng-if=\"vm.widget.type==='Colour Light'\" ng-hide=\"vm.lightOff\" class=\"row\">\n            <div class=\"col-xs-4\">\n                <div ng-init='colorPickerModel = {\"item\": vm.widget.color,\"style\":\"aCKolor\"}'>\n                    <widget-colorpicker ng-model=\"colorPickerModel\" />\n                </div>\n            </div>\n            <div class=\"col-xs-8\">\n                <div class=\"slider-div\">\n                    <div class=\"box-content slider\">\n                        <div ng-class=\"{ 'slider-content': 'true', 'slider-content-vertical': 'false' }\">\n                            <div class=\"slider-container\">\n                                <rzslider rz-slider-model=\"vm.lightnessSlider.value\" rz-slider-options=\"vm.lightnessSlider.options\" data-snap-ignore=\"true\"></rzslider>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</div>",
+    "author": "Fatih Boy",
+    "name": "Hue light Widget",
+    "description": "Widget for Hue Light",
+    "id": "huelight",
+    "settings": [
+        {
+            "label": "Title",
+            "id": "title",
+            "description": "Title to display at top of widget",
+            "type": "string"
+        },
+        {
+            "id": "hideTitle",
+            "description": "Hide title on top",
+            "label": "Hide Title",
+            "type": "checkbox"
+        },
+        {
+            "id": "type",
+            "label": "Type",
+            "choices": "Dimmable Light,Colour Light",
+            "description": "Type of Bulb",
+            "default": "Dimmable Light",
+            "type": "choice"
+        },
+        {
+            "id": "color",
+            "label": "Color",
+            "description": "Item for color",
+            "type": "item"
+        },
+        {
+            "id": "temperature",
+            "label": "Temperature / Brightness",
+            "description": "Item for Bulb's temperature",
+            "type": "item"
+        },
+        {
+            "id": "backdrop_icon",
+            "label": "Backdrop Icon",
+            "description": "",
+            "type": "icon"
+        },
+        {
+            "default": true,
+            "description": "Center backdrop horizontally",
+            "id": "backdrop_center",
+            "label": "Backdrop alignment",
+            "type": "checkbox"
+        },
+        {
+            "id": "onoff_icon",
+            "label": "On/Off Icon",
+            "description": "",
+            "type": "icon"
+        }
+    ]
+}
